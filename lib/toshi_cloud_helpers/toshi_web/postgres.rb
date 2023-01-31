@@ -12,7 +12,7 @@ module ToshiCloudHelpers
 
       def perform
         query = @db_connection.exec(@sql_statement)
-        columns = query.columns
+        columns = query.fields
         query.results.map do |row|
           DatabaseRow.new(row, columns)
         end
