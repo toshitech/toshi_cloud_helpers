@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "toshi_cloud_helpers/version"
-require 'pg'
-require 'mongo'
+require_relative "toshi_cloud_helpers/toshi_web/postgres"
+require_relative "toshi_cloud_helpers/toshi_web/database_row"
+require_relative "toshi_cloud_helpers/toshi_plan/mongo"
 
 module ToshiCloudHelpers
   class Error < StandardError; end

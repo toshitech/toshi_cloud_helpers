@@ -6,6 +6,9 @@ RSpec.describe ToshiCloudHelpers do
   end
 
   it "does something useful" do
-    expect(false).to eq(true)
+    ToshiCloudHelpers::ToshiWeb::Postgres
+    ToshiCloudHelpers::ToshiWeb::DatabaseRow
+
+    ToshiCloudHelpers::ToshiPlan::Mongo
   end
 end

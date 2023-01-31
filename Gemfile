@@ -13,3 +13,5 @@ gem "rubocop", "~> 1.21"
 
 gem 'pg'
 gem "mongo", "~> 2"
+
+gem 'pry'
