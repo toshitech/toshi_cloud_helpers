@@ -4,7 +4,7 @@ module ToshiCloudHelpers
   module ToshiPlan
     class Mongo
       def initialize
-        @db_connection = Mongo::Client.new([ENV['MONGO_HOST']], database_config)
+        @db_connection = ::Mongo::Client.new([ENV['MONGO_HOST']], database_config)
       end
 
       def perform(collection_name)
