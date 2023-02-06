@@ -6,7 +6,7 @@ module ToshiCloudHelpers
       def initialize(row, columns)
         columns.each_with_index do |column, i|
           self.class.send(:attr_accessor, column)
-          self.send("#{column}=", row[i])
+          send("#{column}=", row[i])
         end
       end
     end

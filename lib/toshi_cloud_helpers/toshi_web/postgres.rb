@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'pg'
+require "pg"
 
 module ToshiCloudHelpers
   module ToshiWeb

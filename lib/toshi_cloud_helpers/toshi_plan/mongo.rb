@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'mongo'
+require "mongo"
 
 module ToshiCloudHelpers
   module ToshiPlan
     class Mongo
       def initialize
-        @db_connection = ::Mongo::Client.new(ENV['MONGO_HOST'], database_config)
+        @db_connection = ::Mongo::Client.new(ENV["MONGO_HOST"], database_config)
       end
 
       def perform(collection_name)
@@ -21,9 +21,9 @@ module ToshiCloudHelpers
 
       def database_config
         {
-          user: ENV['MONGO_USER'],
-          password: ENV['MONGO_PASSWORD'],
-          database: ENV['MONGO_DB_NAME']
+          user: ENV["MONGO_USER"],
+          password: ENV["MONGO_PASSWORD"],
+          database: ENV["MONGO_DB_NAME"]
         }
       end
     end
