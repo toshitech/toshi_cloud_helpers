@@ -6,7 +6,7 @@ module ToshiCloudHelpers
   module ToshiPlan
     class Mongo
       def initialize
-        @db_connection = ::Mongo::Client.new(ENV["MONGO_HOST"], database_config)
+        @db_connection = ::Mongo::Client.new(connection_string)
       end
 
       def perform(collection_name)
@@ -19,12 +19,8 @@ module ToshiCloudHelpers
 
       protected
 
-      def database_config
-        {
-          user: ENV["MONGO_USER"],
-          password: ENV["MONGO_PASSWORD"],
-          database: ENV["MONGO_DB_NAME"]
-        }
+      def connection_string
+        "mongodb://#{ENV["MONGO_USER"]}:#{ENV["MONGO_PASSWORD"]}@#{ENV["MONGO_HOST"]}/#{ENV["MONGO_DB_NAME"]}"
       end
     end
   end
