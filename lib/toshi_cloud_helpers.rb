@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "mongo"
+require "pg"
+
 require_relative "toshi_cloud_helpers/version"
 require_relative "toshi_cloud_helpers/toshi_web/postgres"
 require_relative "toshi_cloud_helpers/toshi_web/database_row"
