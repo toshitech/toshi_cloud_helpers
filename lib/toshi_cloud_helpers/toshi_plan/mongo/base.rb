@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "mongo"
-
 module ToshiCloudHelpers
   module ToshiPlan
     module Mongo
