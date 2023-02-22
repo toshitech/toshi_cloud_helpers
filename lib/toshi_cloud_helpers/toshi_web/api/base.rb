@@ -1,4 +1,5 @@
-# frozen_string_literal: true
+require 'openssl'
+require 'httparty'
 
 module ToshiCloudHelpers
   module ToshiWeb
@@ -8,25 +9,32 @@ module ToshiCloudHelpers
         PUBLIC_KEY_HEADER = "X-Authorization-Public-Key"
         TIMESTAMP_HEADER = "X-Authorization-Timestamp"
         TIMESTAMP_HASH = "X-Authorization-Content-SHA256"
+
+        include HTTParty
+
         def initialize
           @public_key = ENV["TOSHI_WEB_PUBLIC_KEY"]
           @secret_key = ENV["TOSHI_WEB_SECRET_KEY"]
           @timestamp = Time.now.to_i
-          @hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), @secret_key, "#{@public_key}:#{@timestamp}")
+          @hash = ::OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), @secret_key, "#{@public_key}:#{@timestamp}")
         end
 
         def post(path, body)
           address = url(path)
-          req = Net::HTTP::Post.new(address)
-          req.body = body
-          add_headers(req)
-          Net::HTTP.start(address) do |http|
-            http.request(req)
-          end
+          options = {
+            headers: {
+              PUBLIC_KEY_HEADER => @public_key,
+              TIMESTAMP_HEADER => @timestamp.to_s,
+              TIMESTAMP_HASH => @hash,
+              'Content-Type' => 'application/json'
+            },
+            body: body
+          }
+          self.class.post(address, options)
         end
 
         def url(path)
-          URI("#{base_url}#{path}")
+          "#{base_url}#{path}"
         end
 
         protected
@@ -40,12 +48,6 @@ module ToshiCloudHelpers
           else
             "https://api.toshi.test"
           end
-        end
-
-        def add_headers(req)
-          req.add_field(PUBLIC_KEY_HEADER, @public_key)
-          req.add_field(TIMESTAMP_HEADER, @timestamp)
-          req.add_field(TIMESTAMP_HASH, @hash)
         end
       end
     end
