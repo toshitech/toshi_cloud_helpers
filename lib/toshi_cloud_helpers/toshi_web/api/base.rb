@@ -31,6 +31,17 @@ module ToshiCloudHelpers
 
         protected
 
+        def base_url
+          case ENV["ENVIRONMENT_NAME"]
+          when "production"
+            "https://api.toshi.co"
+          when "staging"
+            "https://staging.api.toshi.co"
+          else
+            "https://api.toshi.test"
+          end
+        end
+
         def add_headers(req)
           req.add_field(PUBLIC_KEY_HEADER, @public_key)
           req.add_field(TIMESTAMP_HEADER, @timestamp)

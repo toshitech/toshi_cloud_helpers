@@ -4,8 +4,7 @@ module ToshiCloudHelpers
   module ToshiWeb
     module Api
       class Jobs < Base
-        def initialize(base_url: 'https://wwww.toshi.co')
-          @base_url = base_url
+        def initialize
           super
         end
 
