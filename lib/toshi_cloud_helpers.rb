@@ -2,7 +2,7 @@
 
 require "mongo"
 require "pg"
-require "httpparty"
+require "httparty"
 
 require_relative "toshi_cloud_helpers/version"
 require_relative "toshi_cloud_helpers/toshi_web/postgres"

@@ -15,4 +15,4 @@ gem "mongo", "~> 2"
 gem "pg"
 
 gem "pry"
-gem 'httpparty'
+gem 'httparty'

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    toshi_cloud_helpers (0.2.10)
+    toshi_cloud_helpers (0.2.11)
       mongo
       pg
 
@@ -15,8 +15,6 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    httpparty (0.2.0)
-      httparty (> 0)
     json (2.6.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
@@ -66,7 +64,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  httpparty
+  httparty
   mongo (~> 2)
   pg
   pry
