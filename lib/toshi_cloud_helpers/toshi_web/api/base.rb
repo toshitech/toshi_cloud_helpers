@@ -1,5 +1,5 @@
 require 'openssl'
-require 'httparty'
+require 'httpparty'
 
 module ToshiCloudHelpers
   module ToshiWeb
