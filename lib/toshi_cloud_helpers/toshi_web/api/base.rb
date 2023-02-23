@@ -45,7 +45,7 @@ module ToshiCloudHelpers
           when "staging"
             "https://staging.api.toshi.co"
           else
-            "http://api.toshi.test"
+            ENV['API_SERVER_URL']
           end
         end
       end

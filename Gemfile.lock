@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    toshi_cloud_helpers (0.2.13)
+    toshi_cloud_helpers (0.2.14)
       httparty
       mongo
       pg
