@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "mongo"
   spec.add_dependency "pg"
+  spec.add_dependency "httparty"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
