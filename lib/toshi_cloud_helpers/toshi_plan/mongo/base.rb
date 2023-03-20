@@ -20,8 +20,7 @@ module ToshiCloudHelpers
         protected
 
         def connection_string
-          "mongodb://localhost:27017"
-          # "mongodb://#{ENV["MONGO_USER"]}:#{ENV["MONGO_PASSWORD"]}@#{ENV["MONGO_HOST"]}/#{ENV["MONGO_DB_NAME"]}"
+          "mongodb://#{ENV["MONGO_USER"]}:#{ENV["MONGO_PASSWORD"]}@#{ENV["MONGO_HOST"]}/#{ENV["MONGO_DB_NAME"]}"
         end
       end
     end
