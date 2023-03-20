@@ -14,7 +14,17 @@ module ToshiCloudHelpers
         end
 
         def find_route
-          collection.find({ '_id': "ObjectId(#{@attributes[:route_id]})" }).limit(1).first
+          collection.find(
+            {
+              'steps.metadata.journey_id': @attributes[:journey_id],
+              'deprecated': false,
+              'route_date': @attributes[:route_date]
+            }
+          ).first
+        end
+
+        def update_route
+          collection.update_one({ _id: @attributes[:id] }, @attributes[:new_doc], { upsert: true })
         end
       end
     end
