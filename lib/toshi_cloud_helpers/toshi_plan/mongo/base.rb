@@ -6,7 +6,7 @@ module ToshiCloudHelpers
       # abstract class. Define a collection class and inherit from this
       class Base
         def initialize
-          @db_connection = ::Mongo::Client.new(connection_string)
+          @db_connection = ::Mongo::Client.new([ENV['MONGO_HOST']], database_config)
         end
 
         def collection
@@ -18,6 +18,14 @@ module ToshiCloudHelpers
         end
 
         protected
+
+        def database_config
+          {
+            user: ENV['MONGO_USER'],
+            password: ENV['MONGO_PASSWORD'],
+            database: ENV['MONGO_DB_NAME']
+          }
+        end
 
         def connection_string
           "mongodb://#{ENV["MONGO_USER"]}:#{ENV["MONGO_PASSWORD"]}@#{ENV["MONGO_HOST"]}/#{ENV["MONGO_DB_NAME"]}"
