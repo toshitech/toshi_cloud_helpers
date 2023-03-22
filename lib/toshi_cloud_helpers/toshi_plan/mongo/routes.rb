@@ -24,7 +24,11 @@ module ToshiCloudHelpers
         end
 
         def update_route
-          collection.update_one({ _id: @attributes[:id] }, @attributes[:new_doc], { upsert: true })
+          collection.update_one(
+            { '_id': @attributes[:id] },
+            { '$set': @attributes[:new_doc] },
+            { upsert: true }
+          )
         end
       end
     end
