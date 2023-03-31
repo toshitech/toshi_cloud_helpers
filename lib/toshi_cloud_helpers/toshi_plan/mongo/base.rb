@@ -6,7 +6,7 @@ module ToshiCloudHelpers
       # abstract class. Define a collection class and inherit from this
       class Base
         def initialize
-          @db_connection = ::Mongo::Client.new(connection_string)
+          @db_connection = ::Mongo::Client.new(ENV['MONGO_URI'])
         end
 
         def collection
@@ -15,12 +15,6 @@ module ToshiCloudHelpers
 
         def collection_name
           raise NotImplementedError, "Define this on your child class"
-        end
-
-        protected
-
-        def connection_string
-          "mongodb://#{ENV["MONGO_USER"]}:#{ENV["MONGO_PASSWORD"]}@#{ENV["MONGO_HOST"]}/#{ENV["MONGO_DB_NAME"]}"
         end
       end
     end
