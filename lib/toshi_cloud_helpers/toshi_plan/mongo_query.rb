@@ -43,14 +43,6 @@ module ToshiCloudHelpers
           { upsert: true }
         )
       end
-
-      def save_shipment(attributes:)
-        collection.update_one(
-          { journey_id: attributes[:journey_id] },
-          { '$set': attributes },
-          upsert: true
-        )
-      end
     end
   end
 end
