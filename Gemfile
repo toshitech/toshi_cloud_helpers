@@ -14,5 +14,5 @@ gem "rubocop", "~> 1.21"
 gem "mongo", "~> 2"
 gem "pg"
 
+gem "httparty"
 gem "pry"
-gem 'httparty'
