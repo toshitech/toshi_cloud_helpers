@@ -3,16 +3,26 @@
 module ToshiCloudHelpers
   module Api
     class ToshiPlan < Base
-      def initialize
-        super
-      end
-
       def update_mongo_task_state(body)
-        post('/mongo/task_state', body)
+        post("/mongo/task_state", body)
       end
 
       def base_url
         ENV["TOSHI_PLAN_URL"]
+      end
+
+      protected
+
+      def secret_key
+        ENV["TOSHI_PLAN_SECRET_KEY"]
+      end
+
+      def public_key
+        ENV["TOSHI_PLAN_PUBLIC_KEY"]
+      end
+
+      def service_name_header
+        "toshi-plan"
       end
     end
   end

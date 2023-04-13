@@ -1,4 +1,6 @@
-require 'openssl'
+# frozen_string_literal: true
+
+require "openssl"
 
 module ToshiCloudHelpers
   module Api
@@ -7,14 +9,27 @@ module ToshiCloudHelpers
       PUBLIC_KEY_HEADER = "X-Authorization-Public-Key"
       TIMESTAMP_HEADER = "X-Authorization-Timestamp"
       TIMESTAMP_HASH = "X-Authorization-Content-SHA256"
+      SERVICE_NAME_HEADER = "X-Authorization-ServiceName"
 
       include HTTParty
 
       def initialize
-        @public_key = ENV["TOSHI_WEB_PUBLIC_KEY"]
-        @secret_key = ENV["TOSHI_WEB_SECRET_KEY"]
+        @public_key = public_key
+        @secret_key = secret_key
         @timestamp = Time.now.to_i
         @hash = ::OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), @secret_key, "#{@public_key}:#{@timestamp}")
+      end
+
+      def public_key
+        raise NotImplementedError, "must be implemented in a subclass"
+      end
+
+      def secret_key
+        raise NotImplementedError, "must be implemented in a subclass"
+      end
+
+      def service_name_header
+        raise NotImplementedError, "must be implemented in a subclass"
       end
 
       def post(path, body)
@@ -24,7 +39,8 @@ module ToshiCloudHelpers
             PUBLIC_KEY_HEADER => @public_key,
             TIMESTAMP_HEADER => @timestamp.to_s,
             TIMESTAMP_HASH => @hash,
-            'Content-Type' => 'application/json'
+            SERVICE_NAME_HEADER => service_name,
+            "Content-Type" => "application/json"
           },
           body: body
         }
