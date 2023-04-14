@@ -27,10 +27,6 @@ module ToshiCloudHelpers
       def public_key
         ENV["TOSHI_WEB_PUBLIC_KEY"]
       end
-
-      def service_name_header
-        "toshi-web"
-      end
     end
   end
 end

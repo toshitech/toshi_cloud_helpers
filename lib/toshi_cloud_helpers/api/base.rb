@@ -29,7 +29,7 @@ module ToshiCloudHelpers
       end
 
       def service_name_header
-        raise NotImplementedError, "must be implemented in a subclass"
+        ENV['HMAC_SERVICE_NAME_HEADER']
       end
 
       def post(path, body)
@@ -39,7 +39,7 @@ module ToshiCloudHelpers
             PUBLIC_KEY_HEADER => @public_key,
             TIMESTAMP_HEADER => @timestamp.to_s,
             TIMESTAMP_HASH => @hash,
-            SERVICE_NAME_HEADER => service_name,
+            SERVICE_NAME_HEADER => service_name_header,
             "Content-Type" => "application/json"
           },
           body: body

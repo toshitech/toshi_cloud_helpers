@@ -20,10 +20,6 @@ module ToshiCloudHelpers
       def public_key
         ENV["TOSHI_PLAN_PUBLIC_KEY"]
       end
-
-      def service_name_header
-        "toshi-plan"
-      end
     end
   end
 end
