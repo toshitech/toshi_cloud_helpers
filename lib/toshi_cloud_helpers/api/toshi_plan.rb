@@ -3,8 +3,8 @@
 module ToshiCloudHelpers
   module Api
     class ToshiPlan < Base
-      def update_mongo_task_state(body)
-        post("/mongo/task_state", body)
+      def update_mongo_task_state(body, location_code)
+        post("/mongo/task_state?location_code=#{location_code}", body)
       end
 
       def base_url
